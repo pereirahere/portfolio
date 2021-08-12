@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <thymeleaf th:replace="header :: header"/>
+    <style>
+        .container-fluid {
+            height: 60px;
+            background-image: linear-gradient(to right, #0a58ca, #4C95ED);
+        }
+
+        #profile {
+            width: 60%;
+            background-color: white;
+            margin-top: 20px;
+        }
+
+        body {
+            background-image: url("https://www.desktopdress.com/edit/natural/nice-roundabout/1600x1200.jpg");
+        }
+    </style>
+</head>
+<body>
+
+<div class="container-fluid">
+    <header th:replace="nav :: nav"></header>
+</div>
+
+<div id="profile" class="container d-flex justify-content-center">
+    <div class="card" style="width: 100%;" th:object="${user}">
+        <img style="width: 300px;margin-left: auto;margin-right: auto;" class="card-img-top" src="https://w7.pngwing.com/pngs/373/961/png-transparent-mr-bean-internet-meme-humour-mr-bean-heroes-necktie-meme-thumbnail.png" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title" th:text="${user.username}"></h5>
+            <h5 class="card-title" th:text="${user.email}"> </h5>
+        </div>
+        <h2>Visited Roundabouts</h2>
+        <div th:object="${visitedRoundabouts}">
+            <table class="table table-striped">
+                <tr>
+                    <th>Roundabout Name</th>
+                </tr>
+                <tr th:each="roundabout : ${visitedRoundabouts}">
+                    <td th:text="${roundabout.name}"></td>
+                </tr>
+            </table>
+
+        </div>
+        <h2>Review List</h2>
+        <div>
+            <table class="table table-striped">
+                <tr>
+                    <th>Roundabout Name</th>
+                    <th>Review</th>
+                    <th>Rating</th>
+                </tr>
+                <tr th:each="review : ${user.authoredReviews}">
+                    <td th:text="${review.target.name}"></td>
+                    <td th:text="${review.reviewText}"></td>
+                    <td th:text="${review.rating}"></td>
+                </tr>
+            </table>
+
+        </div>
+        <h2>Challenges Completed</h2>
+        <div>
+            <table class="table table-striped">
+                <tr>
+                    <th>Challenge</th>
+                    <th>Description</th>
+                    <th>Difficulty</th>
+                </tr>
+                <tr th:each="challenge : ${user.completedChallenges}">
+                    <td th:text="${challenge.challengeName}"></td>
+                    <td th:text="${challenge.challengeDescription}"></td>
+                    <td th:text="${challenge.challengeType}"></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

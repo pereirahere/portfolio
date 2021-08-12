@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <thymeleaf th:replace="header :: header"/>
+    <style>
+        .container-fluid {
+            height: 60px;
+            background-image: linear-gradient(to right, #0a58ca, #4C95ED);
+        }
+
+        #profile {
+            width: 60%;
+            background-color: white;
+            margin-top: 20px;
+        }
+
+        body {
+            background-image: url("https://www.desktopdress.com/edit/natural/nice-roundabout/1600x1200.jpg");
+        }
+    </style>
+</head>
+<body>
+
+<div class="container-fluid">
+    <header th:replace="nav :: nav"></header>
+</div>
+
+<div id="profile" class="container d-flex justify-content-center">
+    <div class="card" style="width: 100%;" th:object="${roundabout}">
+        <img style="width: 300px;margin-left: auto;margin-right: auto;" class="card-img-top" src="https://radioportuense.com/wp-content/uploads/2019/01/Sem-T%C3%ADtulo-37.jpg" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title" th:text="${roundabout.name}"></h5>
+        </div>
+        <div>
+            <table class="table table-striped">
+                <tr>
+                    <td> Average Rating: </td>
+                    <td th:text="${roundabout.avgRating}"></td>
+                </tr>
+            </table>
+
+        </div>
+        <h2>Review List</h2>
+        <div>
+            <table class="table table-striped">
+                <tr>
+                    <th>User</th>
+                    <th>Review</th>
+                    <th>Rating</th>
+                </tr>
+                <tr th:each="review : ${roundaboutReviews}">
+                    <td th:text="${review.author.username}"></td>
+                    <td th:text="${review.reviewText}"></td>
+                    <td th:text="${review.rating}"></td>
+                </tr>
+            </table>
+
+        </div>
+
+        <div>
+            <a th:if="${isLoggedIn}" class="btn btn-success" th:href="@{'/user/visit/' + ${roundabout.id}}"> Check-in </a>
+        </div>
+
+        <div>
+            <a th:if="${isLoggedIn}" class="btn btn-warning" href="#" > Review </a>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

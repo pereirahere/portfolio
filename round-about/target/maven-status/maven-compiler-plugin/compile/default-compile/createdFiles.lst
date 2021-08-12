@@ -1,0 +1,16 @@
+org/academiadecodigo/roundabout/service/ReviewService.class
+org/academiadecodigo/roundabout/model/Challenge.class
+org/academiadecodigo/roundabout/controller/UserController.class
+org/academiadecodigo/roundabout/service/RoundaboutService.class
+org/academiadecodigo/roundabout/controller/RoundaboutController.class
+org/academiadecodigo/roundabout/model/Roundabout.class
+org/academiadecodigo/roundabout/model/Review.class
+org/academiadecodigo/roundabout/model/ChallengeType.class
+org/academiadecodigo/roundabout/service/UserService.class
+org/academiadecodigo/roundabout/controller/ChallengeController.class
+org/academiadecodigo/roundabout/controller/MainController.class
+org/academiadecodigo/roundabout/SpringBootstrap.class
+org/academiadecodigo/roundabout/service/ChallengeService.class
+org/academiadecodigo/roundabout/model/User.class
+org/academiadecodigo/roundabout/factory/ChallengeFactory.class
+org/academiadecodigo/roundabout/Bootstrap.class

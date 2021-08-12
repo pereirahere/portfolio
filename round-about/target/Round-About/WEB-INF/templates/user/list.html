@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <thymeleaf th:replace="header :: header"/>
+</head>
+<body>
+
+<tr th:each="user: ${users}">
+    <td th:text="${user.username}" />
+    <td th:text="${user.email}" />
+</tr>
+
+</body>
+</html>

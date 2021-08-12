@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <thymeleaf th:replace="header :: header"/>
+
+    <style type="text/css">
+
+        #map {
+            height: 800px;
+            /* The height is 400 pixels */
+            width: 100%;
+            /* The width is the width of the web page */
+        }
+
+        .container-fluid {
+            height: 60px;
+            background: #0a58ca;
+        }
+
+        .center {
+            display: inline-block;
+            text-align: center;
+        }
+
+        .list-group-item.active {
+            z-index: 2;
+            color: #fff;
+            background-color: #0d6efd;
+            border-color: #0d6efd;
+            margin-top: 100px;
+        }
+
+        .form-control {
+            z-index: 2;
+            color: #fff;
+            background-color: #f9fafb;
+            border-color: #212529;
+            margin-top: 100px;
+        }
+
+        .flex-container {
+            flex-wrap: wrap;
+        }
+
+    </style>
+
+    <script th:inline="javascript">
+        // Initialize and add the map
+        function initMap() {
+            // The map, centered at Porto
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 8,
+                center: {lat: 41.14961, lng: -8.61099},
+            });
+            // The marker, positioned at Uluru
+            const marker = new google.maps.Marker({
+                position: {lat: 41.14961, lng: -8.61099},
+                map: map,
+
+            });
+
+            /*<![CDATA[*/
+            var markers = /*[[${roundaboutList}]]*/;
+            markers.forEach(function (element) {
+                const marker2 = new google.maps.Marker({
+                    position: {lat: element.coordinates[0], lng: element.coordinates[1]},
+                    map: map,
+                });
+            });
+            /*]]>*/
+        }
+    </script>
+</head>
+
+<body>
+<div class="container-fluid">
+    <header th:replace="nav :: nav"></header>
+</div>
+
+<div>
+    <table style="width: 100%">
+        <tr>
+            <th></th>
+            <th></th>
+            </tr>
+        <tr>
+            <td style="width:30%">
+                <form>
+                    <div class="form-group">
+
+                        <input type="email" class="form-control" id="exampleInputEmail1"
+                               aria-describedby="emailHelp"
+                               placeholder="Enter area">
+                        <button type="button" class="btn btn-primary btn-lg">Search</button>
+
+                    </div>
+                </form>
+
+                <span class="list-group-item list-group-item-action active" aria-current="true">
+                        Roundabouts
+                    </span>
+                <div class="list-group col-sm-12 center" th:each="roundabout: ${roundaboutList}">
+                    <a th:href="@{'/roundabout/' + ${roundabout.getId()}}" class="list-group-item list-group-item-action" th:text="${roundabout.name}"></a>
+                </div>
+            </td>
+            <td style="width:70%">
+                <div id="map"></div>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbkUWNh0my-T_pNntHzaPCd3rib8zfSrk
+      &callback=initMap&libraries=&v=weekly" async></script>
+</body>
+</html>

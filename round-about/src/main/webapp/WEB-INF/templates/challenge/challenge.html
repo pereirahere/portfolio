@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <thymeleaf th:replace="header :: header"/>
+    <style>
+        .container-fluid{
+            height: 35px;
+            background-image: linear-gradient(to right, #0a58ca, #4C95ED);
+        }
+        .container{
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+
+<div class="container-fluid">
+    <header th:replace="nav :: nav"></header>
+</div>
+
+<div class="container-fluid"></div>
+
+<div class="container d-flex justify-content-center">
+    <div class="card" style="width: 80%;">
+        <img class="card-img-top" src="https://cdn.aarp.net/content/dam/aarp/auto/2020/11/1140-roundabout.jpg"
+             alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title" th:text="${challenge.challengeName}"></h5>
+            <p class="card-text" th:text="${challenge.challengeDescription}"></p>
+            <a href="/round-about/" class="btn btn-primary">Ready?</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

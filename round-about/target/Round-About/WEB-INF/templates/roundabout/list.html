@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <thymeleaf th:replace="header :: header"/>
+</head>
+<body>
+
+<tr th:each="roundabout: ${roundabouts}">
+    <td th:text="${roundabout.name}" />
+    <td th:text="${roundabout.xCoord}" />
+    <td th:text="${roundabout.yCoord}" />
+</tr>
+
+</body>
+</html>
